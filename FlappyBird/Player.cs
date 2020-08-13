@@ -9,7 +9,7 @@ namespace FlappyBird
 {
     public sealed class Player
     {
-        private const float Gravity = 750;
+        private const float Gravity = 1500;
         private float _velocity = 0;
         private Sprite _sprite;
         private IntRect[] _animationFrames;
@@ -22,17 +22,17 @@ namespace FlappyBird
             _animationFrames = areas;
             _sprite = new Sprite(texture, areas[0]);
             _sprite.Position = new Vector2f(xPosition, window.Size.Y / 2);
-            _sprite.Scale = new Vector2f(2, 2);
+            _sprite.Scale = new Vector2f(3, 3);
             _sprite.Origin = new Vector2f(areas[0].Width / 2, areas[0].Height / 2);
         }
 
         public void Update(float deltaT)
         {
-            if (_velocity < 0)
+            if (_velocity < Gravity * 0.20f)
             {
                 _sprite.TextureRect = _animationFrames[0];
             }
-            else if (_velocity < Gravity * 0.25f)
+            else if (_velocity < Gravity * 0.40f)
             {
                 _sprite.TextureRect = _animationFrames[2];
             }
@@ -41,7 +41,7 @@ namespace FlappyBird
                 _sprite.TextureRect = _animationFrames[1];
             }
             _velocity -= Gravity * deltaT;
-            _sprite.Rotation = Utility.Lerp(_sprite.Rotation, Utility.Clamp(-_velocity, -60, 80), deltaT * 10f);
+            _sprite.Rotation = Utility.Lerp(_sprite.Rotation, Utility.Clamp(-_velocity, -75, 80), deltaT * 15f);
 
             var newY = Utility.Clamp(_sprite.Position.Y - _velocity * deltaT, 0, _window.Size.Y);
             _sprite.Position = new Vector2f(_sprite.Position.X, newY);
@@ -56,7 +56,7 @@ namespace FlappyBird
         {
             if (e.Code == Keyboard.Key.Space)
             {
-                _velocity = Gravity * 0.5f;
+                _velocity = Gravity * 0.3f;
             }
         }
     }

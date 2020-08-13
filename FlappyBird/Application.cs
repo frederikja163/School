@@ -9,8 +9,9 @@ namespace FlappyBird
 {
     public sealed class Application
     {
-        private RenderWindow _window;
-        private Player _player;
+        private readonly RenderWindow _window;
+        private readonly Player _player;
+        private readonly ObstacleManager _obstacleManager;
 
         public Application()
         {
@@ -21,6 +22,8 @@ namespace FlappyBird
                 new IntRect(3, 491, 17, 12),
                 new IntRect(31, 491, 17, 12),
                 new IntRect(59, 491, 17, 12));
+            
+            _obstacleManager = new ObstacleManager(_window, _player, spriteSheet, new IntRect[1, 2]{{new IntRect(56, 323, 26,160), new IntRect(84, 323, 26, 160)}});
 
             _window.Closed += OnWindowClosed;
         }
@@ -37,9 +40,11 @@ namespace FlappyBird
                 watch.Restart();
                 
                 _player.Update(deltaT);
+                _obstacleManager.Update(deltaT);
 
                 _window.Clear();
                 _player.Draw();
+                _obstacleManager.Draw();
                 _window.Display();
             }
         }

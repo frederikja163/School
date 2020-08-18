@@ -41,11 +41,13 @@ namespace FlappyBird
                 _sprite.TextureRect = _animationFrames[1];
             }
             _velocity -= Gravity * deltaT;
-            _sprite.Rotation = Utility.Lerp(_sprite.Rotation, Utility.Clamp(-_velocity, -75, 80), deltaT * 15f);
+            _sprite.Rotation = Utility.Lerp(_sprite.Rotation, Utility.Clamp(-_velocity, -75, 80), deltaT * 10);
 
             var newY = Utility.Clamp(_sprite.Position.Y - _velocity * deltaT, 0, _window.Size.Y);
             _sprite.Position = new Vector2f(_sprite.Position.X, newY);
         }
+
+        public Vector2f Position { get => _sprite.Position; }
 
         public void Draw()
         {

@@ -11,8 +11,8 @@ namespace FlappyBird
     public sealed class Application
     {
         private readonly RenderWindow _window;
-        private readonly Player _player;
-        private readonly ObstacleManager _obstacleManager;
+        private Player _player;
+        private ObstacleManager _obstacleManager;
         private readonly SpriteSheet _sheet;
         private Sprite? _tutorial;
         private bool _isUpdating = false;
@@ -83,7 +83,8 @@ namespace FlappyBird
                 else if (!_isUpdating && _tutorial == null)
                 {
                     _isUpdating = true;
-                    //Reset
+                    _player = new Player(_window, _window.Size.X * 100f, _sheet);
+                    _obstacleManager = new ObstacleManager(_window, _player, _sheet);
                 }
             }
         }

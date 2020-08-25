@@ -4,7 +4,7 @@ using SFML.System;
 
 namespace FlappyBird
 {
-    public class SpriteSheet
+    public sealed class SpriteSheet
     {
         private readonly Texture _texture;
         private readonly IntRect[,] _birds;

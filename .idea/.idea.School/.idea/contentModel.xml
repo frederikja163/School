@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\fjapl\.Rider2019.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\fjapl\.Rider2019.3\system\resharper-host\Local\Transient\ReSharperHost\v193\SolutionCaches\_School.-710289462.00" t="ExcludeRecursive" />
-    <e p="C:\Users\fjapl\Desktop\projects\School" t="IncludeFlat">
+    <e p="C:\Users\fjapl\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\fjapl\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_School.1507329390.00" t="ExcludeRecursive" />
+    <e p="C:\Users\fjapl\AppData\Roaming\JetBrains\Rider2020.1\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\fjapl\Documents\projects\School" t="IncludeFlat">
       <e p="FlappyBird" t="IncludeRecursive">
         <e p="Application.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />

@@ -9,19 +9,18 @@ namespace FlappyBird
     {
         private readonly RenderWindow _window;
         private readonly Player _player;
-        private readonly Texture _texture;
-        private readonly IntRect[,] _obstaclePairs;
+        private readonly SpriteSheet _sheet;
         private readonly List<ObstaclePair> _pairs = new List<ObstaclePair>();
+        private int _pipeType = 0;
         private float _timeForNextObstacle = 5;
         private readonly Random _random = new Random(DateTime.UtcNow.Millisecond + DateTime.UtcNow.Hour * 1000);
         public event Action OnPlayerHitObstacle;
 
-        public ObstacleManager(RenderWindow window, Player player, Texture texture, IntRect[,] obstaclePairs)
+        public ObstacleManager(RenderWindow window, Player player, SpriteSheet sheet)
         {
             _window = window;
             _player = player;
-            _texture = texture;
-            _obstaclePairs = obstaclePairs;
+            _sheet = sheet;
         }
 
         public void Update(float deltaT)
@@ -58,7 +57,7 @@ namespace FlappyBird
         {
             var gapSize = _random.Next(50, 75);
             _pairs.Add(new ObstaclePair(_window, 
-                new Sprite(_texture, _obstaclePairs[0, 0]), new Sprite(_texture, _obstaclePairs[0, 1]),
+                _sheet, _pipeType,
                 _random.Next(gapSize + 20, (int)_window.Size.Y - gapSize - 20), gapSize));
             _timeForNextObstacle = 1.5f;
         }

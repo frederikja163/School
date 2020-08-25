@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using SFML.System;
 
 namespace FlappyBird
 {
@@ -12,22 +13,24 @@ namespace FlappyBird
         private readonly RenderWindow _window;
         private readonly Player _player;
         private readonly ObstacleManager _obstacleManager;
-        private bool _isUpdating = true;
+        private readonly SpriteSheet _sheet;
+        private Sprite? _tutorial;
+        private bool _isUpdating = false;
 
         public Application()
         {
             _window = new RenderWindow(new VideoMode(800, 600), "Flappy bird", Styles.Titlebar | Styles.Close);
 
-            var spriteSheet = new Texture("spriteSheet.png");
-            _player = new Player(_window, _window.Size.X * 0.2f, spriteSheet,
-                new IntRect(3, 491, 17, 12),
-                new IntRect(31, 491, 17, 12),
-                new IntRect(59, 491, 17, 12));
-            
-            _obstacleManager = new ObstacleManager(_window, _player, spriteSheet, new IntRect[1, 2]{{new IntRect(56, 323, 26,160), new IntRect(84, 323, 26, 160)}});
+            _sheet = new SpriteSheet("spriteSheet.png");
+            _player = new Player(_window, _window.Size.X * 0.2f, _sheet);
+            _sheet.SetTutorialSprite(ref _tutorial);
+            _tutorial.Position = (Vector2f)_window.Size / 2f;
+            _tutorial.Scale = new Vector2f(3, 3);
+            _obstacleManager = new ObstacleManager(_window, _player, _sheet);
 
             _obstacleManager.OnPlayerHitObstacle += OnPlayerHitObstacle;
             _window.Closed += OnWindowClosed;
+            _window.KeyPressed += OnKeyPressed;
         }
 
         private void OnPlayerHitObstacle()
@@ -55,6 +58,10 @@ namespace FlappyBird
                 _window.Clear();
                 _player.Draw();
                 _obstacleManager.Draw();
+                if (!_isUpdating && _tutorial != null)
+                {
+                    _window.Draw(_tutorial);
+                }
                 _window.Display();
             }
         }
@@ -62,6 +69,23 @@ namespace FlappyBird
         private void OnWindowClosed(object sender, EventArgs e)
         {
             _window.Close();
+        }
+
+        private void OnKeyPressed(object? sender, KeyEventArgs e)
+        {
+            if (e.Code == Keyboard.Key.Space)
+            {
+                if (!_isUpdating && _tutorial != null)
+                {
+                    _isUpdating = true;
+                    _tutorial = null;
+                }
+                else if (!_isUpdating && _tutorial == null)
+                {
+                    _isUpdating = true;
+                    //Reset
+                }
+            }
         }
     }
 }

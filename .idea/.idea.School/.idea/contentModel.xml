@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\fjapl\AppData\Local\JetBrains\Rider2020.1\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\fjapl\AppData\Local\JetBrains\Rider2020.1\resharper-host\Local\Transient\ReSharperHost\v201\SolutionCaches\_School.1507329390.00" t="ExcludeRecursive" />
-    <e p="C:\Users\fjapl\AppData\Roaming\JetBrains\Rider2020.1\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\fjapl\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\fjapl\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_School.1507329390.00" t="ExcludeRecursive" />
+    <e p="C:\Users\fjapl\AppData\Roaming\JetBrains\Rider2020.3\scratches" t="IncludeRecursive" />
     <e p="C:\Users\fjapl\Documents\projects\School" t="IncludeFlat">
       <e p="FlappyBird" t="IncludeRecursive">
         <e p="Application.cs" t="Include" />
@@ -38,6 +38,22 @@
         <e p="TestRectangle.csproj" t="IncludeRecursive" />
       </e>
       <e p="School.sln" t="IncludeFlat" />
+      <e p="TicTacToe" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Board.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net5.0" t="Include">
+              <e p="TicTacToe.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Player.cs" t="Include" />
+        <e p="Program.cs" t="Include" />
+        <e p="Records.cs" t="Include" />
+        <e p="TicTacToe.cs" t="Include" />
+        <e p="TicTacToe.csproj" t="IncludeRecursive" />
+      </e>
     </e>
   </component>
 </project>

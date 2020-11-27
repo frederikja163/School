@@ -4,27 +4,35 @@ using System.Text;
 
 namespace TicTacToe
 {
-    public sealed class BoardState<TPlayer> where TPlayer : class, IPlayer
+    public sealed class BoardState
     {
-        private readonly TPlayer?[,] _board;
+        private readonly int[,] _board;
         private readonly int _rowCount;
-        private readonly TPlayer[] _players;
-        private readonly IBoardRenderer<TPlayer> _renderer;
+        private readonly List<IBoardRenderer> _renderers = new List<IBoardRenderer>();
 
-        public BoardState(int width, int height, int rowCount, TPlayer[] players, IBoardRenderer<TPlayer> renderer)
+        public BoardState(int width, int height, int rowCount, int playerCount)
         {
             Width = width;
             Height = height;
             _rowCount = rowCount;
-            _players = players;
-            _renderer = renderer;
-            _board = new TPlayer?[Width, Height];
+            PlayerCount = playerCount;
+            _board = new int[Width, Height];
+        }
+        
+        public void Add<TRenderer>() where TRenderer : IBoardRenderer, new()
+        {
+            _renderers.Add(new TRenderer());
         }
         
         public int Width { get; }
         public int Height { get; }
 
-        public bool CheckWinner(out TPlayer? player)
+        public int PlayerCount { get; }
+
+        public Action? OnClear;
+        public Action<Position, int>? OnSet;
+
+        public bool CheckWinner(out int player)
         {
             for (int y = 0; y <= Height - _rowCount; y++)
             {
@@ -32,7 +40,7 @@ namespace TicTacToe
                 {
                     //Vertical check
                     player = _board[x, y];
-                    for (int i = 1; i < _rowCount && player != null; i++)
+                    for (int i = 1; i < _rowCount && player != -1; i++)
                     {
                         if (player != _board[x, y + i])
                         {
@@ -52,7 +60,7 @@ namespace TicTacToe
                 {
                     //Horizontal check
                     player = _board[x, y];
-                    for (int i = 1; i < _rowCount && player != null; i++)
+                    for (int i = 1; i < _rowCount && player != -1; i++)
                     {
                         if (player != _board[x + i, y])
                         {
@@ -70,7 +78,7 @@ namespace TicTacToe
                 {
                     //Diagonally up check
                     player = _board[x, y];
-                    for (int i = 1; i < _rowCount && player != null; i++)
+                    for (int i = 1; i < _rowCount && player != -1; i++)
                     {
                         if (player != _board[x + i, y + i])
                         {
@@ -87,7 +95,7 @@ namespace TicTacToe
                 {
                     //Diagonally down check
                     player = _board[x, y];
-                    for (int i = 1; i < _rowCount && player != null; i++)
+                    for (int i = 1; i < _rowCount && player != -1; i++)
                     {
                         if (player != _board[x + i, y - i])
                         {
@@ -102,7 +110,7 @@ namespace TicTacToe
                 }
             }
 
-            player = null;
+            player = -1;
             return false;
         }
 
@@ -112,22 +120,21 @@ namespace TicTacToe
             {
                 for (int y = 0; y < Height; y++)
                 {
-                    _board[x, y] = null;
+                    _board[x, y] = -1;
                 }
             }
-            _renderer.Clear();
+            OnClear?.Invoke();
         }
 
         public bool Set(Position pos, int player)
         {
-            if (!IsClear(pos))
+            if (!IsClear(pos) || player > PlayerCount || player < 0)
             {
                 return false;
             }
 
-            var p = _players[player];
-            _renderer.Set(pos, p);
-            _board[pos.X, pos.Y] = p;
+            OnSet?.Invoke(pos, player);
+            _board[pos.X, pos.Y] = player;
             return true;
         }
 
@@ -135,7 +142,7 @@ namespace TicTacToe
         {
             return pos.X >= 0 && pos.X < Width &&
                    pos.Y >= 0 && pos.Y < Height &&
-                   _board[pos.X, pos.Y] == null;
+                   _board[pos.X, pos.Y] == -1;
         }
     }
 }

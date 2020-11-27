@@ -2,32 +2,27 @@
 
 namespace TicTacToe
 {
-    public sealed class Player : IPlayer
+    public sealed class Player : IMover
     {
-        private readonly int _boardWidth;
-        private readonly int _boardHeight;
+        private readonly BoardState _state;
 
-        public Player(char symbol, int boardWidth, int boardHeight)
+        public Player(BoardState state)
         {
-            _boardWidth = boardWidth;
-            _boardHeight = boardHeight;
-            Symbol = symbol;
+            _state = state;
         }
-
-        public char Symbol { get; }
 
         public Position GetMove()
         {
-            var top = (_boardHeight + 1) * 2;
+            var top = (_state.Height + 1) * 2;
             Console.SetCursorPosition(0, top);
-            Console.WriteLine($"Move for player {Symbol} ( , )");
+            Console.WriteLine($"Move for player {_state.PlayerCount} ( , )");
             while (true)
             {
                 int x;
                 Console.SetCursorPosition(19, top);
-                while (!TryGetInt(1, _boardWidth, out x)) ;
+                while (!TryGetInt(1, _state.Width, out x)) ;
                 Console.SetCursorPosition(21, top);
-                if (TryGetInt(1, _boardHeight, out var y))
+                if (TryGetInt(1, _state.Height, out var y))
                 {
                     return new Position(x - 1, y - 1);
                 }
@@ -53,11 +48,6 @@ namespace TicTacToe
                     return false;
                 }
             }
-        }
-
-        public bool Equals(IPlayer? obj)
-        {
-            return ReferenceEquals(this, obj) || obj is Player other && Symbol == other.Symbol;
         }
     }
 }

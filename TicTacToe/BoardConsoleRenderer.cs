@@ -1,42 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace TicTacToe
 {
-    public class BoardConsoleRenderer : IBoardRenderer<Player>
+    public class BoardConsoleRenderer : IBoardRenderer
     {
-        private readonly int _width;
-        private readonly int _height;
+        private readonly BoardState _state;
+        private readonly char[] _players;
 
-        public BoardConsoleRenderer(int width, int height)
+        public BoardConsoleRenderer(char[] players, BoardState state)
         {
-            _width = width;
-            _height = height;
+            _players = players;
+            _state = state;
+            
+            _state.OnSet += Set;
+            _state.OnClear = Clear;
         }
 
-        public void Set(Position pos, Player player)
+        private void Set(Position pos, int player)
         {
-            Console.SetCursorPosition((pos.X + 1) * 2, (_height - pos.Y - 1) * 2 + 1);
-            Console.Write(player.Symbol);
+            Console.SetCursorPosition((pos.X + 1) * 2, (_state.Height - pos.Y - 1) * 2 + 1);
+            Console.Write(_players[player]);
         }
 
-        public void Clear()
+        private void Clear()
         {
             var sb = new StringBuilder();
 
             void AddRow()
             {
-                for (int x = 0; x < _width + 1; x++) sb.Append("-+");
+                for (int x = 0; x < _state.Width + 1; x++) sb.Append("-+");
                 sb.AppendLine();
             }
 
             AddRow();
-            for (int y = 0; y < _height; y++)
+            for (int y = 0; y < _state.Height; y++)
             {
-                sb.Append(_height - y);
+                sb.Append(_state.Height - y);
                 sb.Append("|");
-                for (int x = 0; x < _width; x++)
+                for (int x = 0; x < _state.Width; x++)
                 {
                     sb.Append(" |");
                 }
@@ -44,7 +46,7 @@ namespace TicTacToe
                 AddRow();
             }
             sb.Append(" |");
-            for (int x = 0; x < _width; x++)
+            for (int x = 0; x < _state.Width; x++)
             {
                 sb.Append(x + 1);
                 sb.Append("|");

@@ -23,15 +23,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41b88a87-18f8-45e8-924b-b0ba117fb30e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/TicTacToe/BoardConsoleRenderer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TicTacToe/IBoardRenderer.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TicTacToe/IPlayer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicTacToe/IMover.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.School/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.School/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.School/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.School/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/Board.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe/BoardState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicTacToe/BoardConsoleRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe/BoardConsoleRenderer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicTacToe/BoardState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe/BoardState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicTacToe/IBoardRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe/IBoardRenderer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TicTacToe/IPlayer.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/TicTacToe/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe/Player.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TicTacToe/TicTacToe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe/TicTacToe.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/TicTacToe.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe/TicTacToe.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,11 +60,12 @@
       <option value="$PROJECT_DIR$/TicTacToe/Program.cs" />
       <option value="$PROJECT_DIR$/TicTacToe/Board.cs" />
       <option value="$PROJECT_DIR$/TicTacToe/IPlayer.cs" />
-      <option value="$PROJECT_DIR$/TicTacToe/Player.cs" />
       <option value="$PROJECT_DIR$/TicTacToe/IBoardRenderer.cs" />
-      <option value="$PROJECT_DIR$/TicTacToe/TicTacToe.cs" />
+      <option value="$PROJECT_DIR$/TicTacToe/Player.cs" />
+      <option value="$PROJECT_DIR$/TicTacToe/IMover.cs" />
       <option value="$PROJECT_DIR$/TicTacToe/BoardConsoleRenderer.cs" />
       <option value="$PROJECT_DIR$/TicTacToe/BoardState.cs" />
+      <option value="$PROJECT_DIR$/TicTacToe/TicTacToe.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1g39v3wpPhC6ZNR9qoBvlq2HDUj" />
@@ -139,7 +140,8 @@
       <workItem from="1598450683812" duration="611000" />
       <workItem from="1606418422402" duration="467000" />
       <workItem from="1606419075101" duration="8521000" />
-      <workItem from="1606463797019" duration="1327000" />
+      <workItem from="1606463797019" duration="1428000" />
+      <workItem from="1606497288252" duration="5493000" />
     </task>
     <servers />
   </component>

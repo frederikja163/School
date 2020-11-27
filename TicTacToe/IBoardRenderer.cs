@@ -1,8 +1,6 @@
 ﻿namespace TicTacToe
 {
-    public interface IBoardRenderer<in TPlayer> where TPlayer : class, IPlayer
+    public interface IBoardRenderer
     {
-        void Set(Position pos, TPlayer player);
-        void Clear();
     }
 }

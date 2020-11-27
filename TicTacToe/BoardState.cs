@@ -1,29 +1,30 @@
-﻿#nullable enable
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace TicTacToe
 {
-    public sealed class Board
+    public sealed class BoardState<TPlayer> where TPlayer : class, IPlayer
     {
-        private readonly Player?[,] _board;
+        private readonly TPlayer?[,] _board;
         private readonly int _rowCount;
-        private readonly Player[] _players;
+        private readonly TPlayer[] _players;
+        private readonly IBoardRenderer<TPlayer> _renderer;
 
-        public Board(int width, int height, int rowCount, Player[] players)
+        public BoardState(int width, int height, int rowCount, TPlayer[] players, IBoardRenderer<TPlayer> renderer)
         {
             Width = width;
             Height = height;
             _rowCount = rowCount;
             _players = players;
-            _board = new Player?[Width, Height];
-            Clear();
+            _renderer = renderer;
+            _board = new TPlayer?[Width, Height];
         }
         
         public int Width { get; }
         public int Height { get; }
 
-        public bool CheckWinner(out Player? player)
+        public bool CheckWinner(out TPlayer? player)
         {
             for (int y = 0; y <= Height - _rowCount; y++)
             {
@@ -107,36 +108,14 @@ namespace TicTacToe
 
         public void Clear()
         {
-            var sb = new StringBuilder();
-
-            void AddRow()
-            {
-                for (int x = 0; x < Width + 1; x++) sb.Append("-+");
-                sb.AppendLine();
-            }
-
-            AddRow();
-            for (int y = 0; y < Height; y++)
-            {
-                sb.Append(Height - y);
-                sb.Append("|");
-                for (int x = 0; x < Width; x++)
-                {
-                    _board[x, y] = null;
-                    sb.Append(" |");
-                }
-                sb.AppendLine();
-                AddRow();
-            }
-            sb.Append(" |");
             for (int x = 0; x < Width; x++)
             {
-                sb.Append(x + 1);
-                sb.Append("|");
+                for (int y = 0; y < Height; y++)
+                {
+                    _board[x, y] = null;
+                }
             }
-            sb.AppendLine();
-            AddRow();
-            Console.WriteLine(sb);
+            _renderer.Clear();
         }
 
         public bool Set(Position pos, int player)
@@ -147,9 +126,8 @@ namespace TicTacToe
             }
 
             var p = _players[player];
+            _renderer.Set(pos, p);
             _board[pos.X, pos.Y] = p;
-            Console.SetCursorPosition((pos.X + 1) * 2, (Height - pos.Y - 1) * 2 + 1);
-            Console.Write(p.Symbol);
             return true;
         }
 

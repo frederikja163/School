@@ -2,7 +2,7 @@
 
 namespace TicTacToe
 {
-    public sealed class Player
+    public sealed class Player : IPlayer
     {
         private readonly int _boardWidth;
         private readonly int _boardHeight;
@@ -53,6 +53,11 @@ namespace TicTacToe
                     return false;
                 }
             }
+        }
+
+        public bool Equals(IPlayer? obj)
+        {
+            return ReferenceEquals(this, obj) || obj is Player other && Symbol == other.Symbol;
         }
     }
 }

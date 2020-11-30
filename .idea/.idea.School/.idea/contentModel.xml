@@ -44,6 +44,7 @@
         <e p="BoardState.cs" t="Include" />
         <e p="IBoardRenderer.cs" t="Include" />
         <e p="IMover.cs" t="Include" />
+        <e p="MinMax.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="net5.0" t="Include">

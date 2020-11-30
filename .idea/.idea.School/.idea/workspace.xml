@@ -23,13 +23,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="41b88a87-18f8-45e8-924b-b0ba117fb30e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/TicTacToe/IMover.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/TicTacToe/MinMax.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.School/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.School/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.School/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.School/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/BoardConsoleRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe/BoardConsoleRenderer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TicTacToe/BoardState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe/BoardState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/IBoardRenderer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe/IBoardRenderer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TicTacToe/IPlayer.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/TicTacToe/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe/Player.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/TicTacToe/TicTacToe.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TicTacToe/TicTacToe.cs" afterDir="false" />
     </list>
@@ -61,11 +58,12 @@
       <option value="$PROJECT_DIR$/TicTacToe/Board.cs" />
       <option value="$PROJECT_DIR$/TicTacToe/IPlayer.cs" />
       <option value="$PROJECT_DIR$/TicTacToe/IBoardRenderer.cs" />
-      <option value="$PROJECT_DIR$/TicTacToe/Player.cs" />
       <option value="$PROJECT_DIR$/TicTacToe/IMover.cs" />
       <option value="$PROJECT_DIR$/TicTacToe/BoardConsoleRenderer.cs" />
+      <option value="$PROJECT_DIR$/TicTacToe/Player.cs" />
       <option value="$PROJECT_DIR$/TicTacToe/BoardState.cs" />
       <option value="$PROJECT_DIR$/TicTacToe/TicTacToe.cs" />
+      <option value="$PROJECT_DIR$/TicTacToe/MinMax.cs" />
     </changedPaths>
   </component>
   <component name="ProjectId" id="1g39v3wpPhC6ZNR9qoBvlq2HDUj" />
@@ -141,7 +139,11 @@
       <workItem from="1606418422402" duration="467000" />
       <workItem from="1606419075101" duration="8521000" />
       <workItem from="1606463797019" duration="1428000" />
-      <workItem from="1606497288252" duration="5493000" />
+      <workItem from="1606497288252" duration="6469000" />
+      <workItem from="1606600476628" duration="1548000" />
+      <workItem from="1606681037680" duration="3407000" />
+      <workItem from="1606687328291" duration="1263000" />
+      <workItem from="1606755989641" duration="3849000" />
     </task>
     <servers />
   </component>

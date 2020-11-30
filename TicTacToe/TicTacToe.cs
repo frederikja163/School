@@ -4,7 +4,7 @@ namespace TicTacToe
 {
     public sealed class TicTacToe
     {
-        private const int Width = 3, Height = 3, RowCount = 3;
+        private const int Width = 4, Height = 3, RowCount = 3;
         private readonly BoardState _state;
         private readonly IBoardRenderer _renderer;
         private readonly IMover[] _movers;
@@ -15,7 +15,7 @@ namespace TicTacToe
             _symbols = new[] {'X', 'O'};
             _state = new BoardState(Width, Height, RowCount, _symbols.Length);
             _renderer = new BoardConsoleRenderer(_symbols, _state);
-            _movers = new[] {new Player(_state), new Player(_state)};
+            _movers = new IMover[] {new Player(_state, _symbols[0]), new MinMax(_state, 1)};
         }
 
         public void Run()

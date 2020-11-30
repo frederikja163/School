@@ -8,7 +8,6 @@ namespace TicTacToe
     {
         private readonly int[,] _board;
         private readonly int _rowCount;
-        private readonly List<IBoardRenderer> _renderers = new List<IBoardRenderer>();
 
         public BoardState(int width, int height, int rowCount, int playerCount)
         {
@@ -18,10 +17,14 @@ namespace TicTacToe
             PlayerCount = playerCount;
             _board = new int[Width, Height];
         }
-        
-        public void Add<TRenderer>() where TRenderer : IBoardRenderer, new()
+
+        private BoardState(int[,] board, int width, int height, int rowCount, int playerCount)
         {
-            _renderers.Add(new TRenderer());
+            Width = width;
+            Height = height;
+            _rowCount = rowCount;
+            PlayerCount = playerCount;
+            _board = board;
         }
         
         public int Width { get; }
@@ -143,6 +146,29 @@ namespace TicTacToe
             return pos.X >= 0 && pos.X < Width &&
                    pos.Y >= 0 && pos.Y < Height &&
                    _board[pos.X, pos.Y] == -1;
+        }
+
+        public BoardState CloneWith(Position pos, int player)
+        {
+            var clone = _board.Clone() as int[,];
+            clone[pos.X, pos.Y] = player;
+            return new BoardState(clone, Width, Height, _rowCount, PlayerCount);
+        }
+
+        public Position[] GetValidMoves()
+        {
+            var moves = new List<Position>();
+            for (int x = 0; x < Width; x++)
+            {
+                for (int y = 0; y < Height; y++)
+                {
+                    if (_board[x, y] == -1)
+                    {
+                        moves.Add(new Position(x, y));
+                    }
+                }
+            }
+            return moves.ToArray();
         }
     }
 }

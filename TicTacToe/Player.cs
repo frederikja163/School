@@ -5,17 +5,19 @@ namespace TicTacToe
     public sealed class Player : IMover
     {
         private readonly BoardState _state;
+        private readonly char _symbol;
 
-        public Player(BoardState state)
+        public Player(BoardState state, char symbol)
         {
             _state = state;
+            _symbol = symbol;
         }
 
         public Position GetMove()
         {
             var top = (_state.Height + 1) * 2;
             Console.SetCursorPosition(0, top);
-            Console.WriteLine($"Move for player {_state.PlayerCount} ( , )");
+            Console.WriteLine($"Move for player {_symbol} ( , )");
             while (true)
             {
                 int x;
